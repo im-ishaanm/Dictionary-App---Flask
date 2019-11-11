@@ -1,18 +1,41 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% block body %}
 
-{% block body %}
+<style>
+  .result {
+    margin-top: 20px;
+  }
+  .result h4 i {
+    color: lightseagreen;
+  }
+</style>
 
-    <div class='jumbotron text-center'>
-        <h1>Dictionary App</h1>
-        <p class="lead">Created by Ishaan, Param and Bharadwaj.</p>
+<div class="jumbotron text-center">
+  <h1>Dictionary App</h1>
+  <p class="lead">Created by Ishaan, Param and Bharadwaj.</p>
+</div>
+<div class="container">
+  <form action="#" method="POST">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Search for a word:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter word"
+        name="word"
+      />
     </div>
-    <div class="container">
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Search for a word:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter word">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<div class="result container">
+  {% if Word %}
+  <h3>{{ Word }}</h3>
+  <h4>
+    <i>{{ Type }}</i>
+  </h4>
+  <p>{{ Defin }}</p>
+  {% endif %}
+</div>
 {% endblock %}
