@@ -3,25 +3,20 @@ from bs4 import BeautifulSoup as bs
 
 
 word = input('Enter Word: ')
-URL = 'https://www.merriam-webster.com/dictionary/'+word
+URL = 'https://www.lexico.com/en/definition/'+word
 
 req = requests.get(URL)
 
 soup = bs(req.content, 'html5lib')
 
-types = soup.findAll('a', {'class': 'important-blue-link'})
+all_def = soup.findAll('section', {'class': 'gramb'})
 
 
-defin = soup.findAll('span', {'class': 'sb-0'})
+types = soup.findAll('span', {'class': 'pos'})
 
-d1 = defin[0].findChildren('span', {'class': 'dtText'})
+types_list = []
 
-print(d1[0].text)
+for Type in types:
+    types_list.append(Type.text)
 
-print('Types are : ')
-for type in types:
-    print(type.text)
-
-print('Definitons: ')
-for d in defin:
-    print(d.text)
+print(types_list)
