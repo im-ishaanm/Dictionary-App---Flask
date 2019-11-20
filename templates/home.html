@@ -4,8 +4,20 @@
   .result {
     margin-top: 20px;
   }
+  .content {
+    display: flex;
+  }
   .result h4 i {
     color: lightseagreen;
+  }
+
+  .defs {
+    font-size: 18px;
+    font-family: sans-serif;
+  }
+
+  .def-div {
+    margin-top: 20px;
   }
 </style>
 
@@ -32,10 +44,31 @@
 <div class="result container">
   {% if Word %}
   <h3>{{ Word }}</h3>
-  <h4>
-    <i>{{ Type }}</i>
-  </h4>
-  <p>{{ Defin }}</p>
   {% endif %}
+  <h4>
+    {% for x in Type %}
+      <i>{{ x }}, </i>
+    {% endfor %}
+  </h4>
+  <div class='content'>
+    <div class='def-div'>
+      {% if Def %}
+      <h5>Definitions</h5>
+        {% for x in Def %}
+          <p class='defs'>{{ x }}</p>
+        {% endfor %}
+      {% else %}
+        <p>Word not found.</p>
+      {% endif %}
+    </div>
+    <div class="examples">
+      {% if Ex %}
+        <h5>Examples</h5>
+        {% for example in Ex %}
+        <p class="defs">{{ example }}</p>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
 </div>
 {% endblock %}
